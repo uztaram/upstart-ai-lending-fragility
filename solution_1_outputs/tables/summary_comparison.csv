@@ -1,0 +1,6 @@
+metric,model_a_control,model_b_adv_augmented,failure_threshold
+Adverse deterioration (pp),6.33,-3.14,4.26
+Severely Adverse deterioration (pp),14.41,-6.59,4.26
+Severely Adverse: flags failure?,True,False,-
+Benign 2017 AUC,0.6735,0.6672,-
+Benign 2017 rate error (pp),1.98,0.97,-

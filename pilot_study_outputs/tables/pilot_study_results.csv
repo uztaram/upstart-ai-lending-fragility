@@ -1,0 +1,5 @@
+model_name,auc_roc,accuracy,brier_score,calibration_error,f1_score,predicted_default_rate,actual_default_rate,rate_error,n_samples,period_model
+FICO – Normal,0.6168,0.6002,0.2298,0.3173,0.2943,0.4666,0.1494,0.3173,443065,fico_normal
+ML – Normal,0.6744,0.8489,0.1227,0.0314,0.0464,0.1808,0.1494,0.0314,443065,ml_normal
+FICO – COVID,0.5844,0.6394,0.2207,0.3794,0.1571,0.4513,0.072,0.3793,159270,fico_stress
+ML – COVID,0.6579,0.9221,0.0818,0.1051,0.0393,0.177,0.072,0.1051,159270,ml_stress

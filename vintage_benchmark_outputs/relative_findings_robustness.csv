@@ -1,0 +1,4 @@
+finding,observed,corrected,preserved,narrative
+Part I: ML/FICO calibration degradation ratio,12.0x,13.6x,True,ML calibration degrades many times more than FICO under stress
+Solution 2: Mean stress-period calibration improvement (Model B vs Model A),"-23.1% (A: 7.81pp, B: 6.00pp)","-19.2% (A: 3.95pp, B: 3.19pp)",True,PSI-triggered retraining reduces calibration error similarly under both observed and corrected actuals
+Solution 3: Layered defence full-population calibration improvement (vs vanilla),"-15.2% (vanilla: 5.78pp, layered: 4.89pp)","-6.5% (vanilla: 2.69pp, layered: 2.52pp)",True,Layered defence improvement preserved under maturity correction

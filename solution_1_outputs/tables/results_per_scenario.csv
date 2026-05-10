@@ -1,0 +1,7 @@
+model,scenario,mean_predicted_default_rate,mean_proxy_actual_rate,rate_error_pp,calibration_error_pp,n_borrowers,deterioration_vs_baseline_pp,flags_failure
+MODEL A (control),baseline,0.1807,0.075,10.57,10.57,443065,0.0,False
+MODEL A (control),adverse,0.2473,0.0783,16.9,16.9,443065,6.33,True
+MODEL A (control),severely_adverse,0.3284,0.0786,24.98,24.98,443065,14.41,True
+MODEL B (adv-augmented),baseline,0.1705,0.075,9.55,9.55,443065,0.0,False
+MODEL B (adv-augmented),adverse,0.1423,0.0783,6.41,6.41,443065,-3.14,False
+MODEL B (adv-augmented),severely_adverse,0.1039,0.0786,2.53,2.96,443065,-6.59,False

@@ -1,0 +1,6 @@
+metric,model_a_control,model_b_psi_retraining,improvement_pp
+Mean stress-period calibration error (pp),7.81,6.0,1.8
+Peak stress-period calibration error (pp),11.35,9.4,1.95
+Quarters breaching 4.26pp threshold,6.0,4.0,2
+Benign 2017 AUC,0.6735,0.6832,-
+Benign 2017 rate error (pp),1.98,0.4,-
