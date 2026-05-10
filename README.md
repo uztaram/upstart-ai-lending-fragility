@@ -2,7 +2,7 @@
 
 Companion code repository for the MSIN0032 dissertation **_The Fragility of Alternative Credit: An Analysis of AI-Driven Lending Performance Under Macroeconomic Stress (2023-2026)_**.
 
-Six Python scripts implement the Part I pilot study, the three Part II solutions, and the §5.5 Monte Carlo simulation. All scripts are deterministic (random seed 42) and reproduce the body's numerical outputs to within floating-point precision.
+Six Python scripts implement the Part I pilot study, the three Part II solutions, the §3.3 vintage-benchmark robustness check, and the §5.5 Monte Carlo simulation. All scripts are deterministic (random seed 42) and reproduce the body's numerical outputs to within floating-point precision.
 
 ---
 
@@ -10,12 +10,12 @@ Six Python scripts implement the Part I pilot study, the three Part II solutions
 
 | File | Implements | Supports |
 |---|---|---|
-| `code/pilot_study.py` | Part I baseline pilot study (FICO vs ML, normal vs stress) | §1.1 235% calibration rise; Part I §3-§4 throughout |
-| `code/solution_1.py` | Solution 1 adversarial-validation gate | §2 throughout (+14.41pp severely-adverse signal, 4.26pp threshold) |
-| `code/solution_2.py` | Solution 2 PSI-triggered retraining demonstration | §3 throughout (one-quarter lead time, 23.1% reduction) |
-| `code/solution_3.py` | Solution 3 vanilla split conformal + ACI | §4 throughout (25.48% abstention, ACI α 0.10 → 0.1094) |
-| `code/vintage_benchmark.py` | Maturity-correction sensitivity analysis | §3.3 robustness check; Appendix B Table B.1 |
-| `code/monte_carlo.py` | §5.5 layered-defence NPV simulation | §5.5 ($133M median NPV, 45.1% volatility reduction) |
+| `pilot_study.py` | Part I baseline pilot study (FICO vs ML, normal vs stress) | §1.1 235% calibration rise; Part I §3-§4 throughout |
+| `solution_1.py` | Solution 1 adversarial-validation gate | §2 throughout (+14.41pp severely-adverse signal, 4.26pp threshold) |
+| `solution_2.py` | Solution 2 PSI-triggered retraining demonstration | §3 throughout (one-quarter lead time, 23.1% reduction) |
+| `solution_3.py` | Solution 3 vanilla split conformal + ACI | §4 throughout (25.48% abstention, ACI α 0.10 → 0.1094) |
+| `vintage_benchmark.py` | Maturity-correction sensitivity analysis | §3.3 robustness check; Appendix B Table B.1 |
+| `monte_carlo.py` | §5.5 layered-defence NPV simulation | §5.5 ($133M median NPV, 45.1% volatility reduction) |
 
 ---
 
@@ -30,7 +30,7 @@ Six Python scripts implement the Part I pilot study, the three Part II solutions
 ### Installation
 
 ```bash
-git clone https://github.com/[username]/upstart-ai-lending-fragility.git
+git clone https://github.com/uztaram/upstart-ai-lending-fragility.git
 cd upstart-ai-lending-fragility
 pip install -r requirements.txt
 ```
@@ -41,17 +41,15 @@ The pilot study uses LendingClub historical loan data (2007 through Q3 2020). Th
 
 1. Visit [Kaggle: ethon0426/lending-club-20072020q1](https://www.kaggle.com/datasets/ethon0426/lending-club-20072020q1)
 2. Download the dataset (requires free Kaggle account)
-3. Place the CSV files in the `data/` folder
+3. Place the CSV file in the repository root
 
-See `data/README.md` for detailed instructions.
+See `DATA_README.md` for detailed instructions.
 
 ### Reproducing body outputs
 
-Once the dataset is in place, run each script in this order:
+Once the dataset is in place, run each script in this order from the repository root:
 
 ```bash
-cd code
-
 # Part I pilot study (foundational; produces baseline + stress results)
 python pilot_study.py
 
@@ -71,7 +69,7 @@ python solution_3.py
 python monte_carlo.py
 ```
 
-Each script writes its outputs to `../outputs/` as CSVs and to `../outputs/figures/` as PNGs. Filenames match the body's table and figure labels.
+Each script writes its outputs to its own subfolder (e.g. `pilot_study_outputs/`, `solution_1_outputs/`). CSV filenames match the body's table labels and PNG filenames match the body's figure labels.
 
 ---
 
@@ -151,13 +149,13 @@ Implements vanilla split conformal, Adaptive Conformal Inference (Gibbs and Cand
 
 All scripts are deterministic. Random seed 42 is set at the start of each entry point. Re-running any script on a clean checkout produces bit-identical numerical outputs to those reported in the body, modulo floating-point operations within documented precision (typically within 1e-10 absolute tolerance).
 
-Output CSVs corresponding to body tables and PNG files corresponding to body figures are produced as side-effects of the relevant scripts and are committed to the repository under `outputs/`.
+Output CSVs corresponding to body tables and PNG files corresponding to body figures are produced as side-effects of the relevant scripts and are committed to the repository under per-script subfolders.
 
 ### Pre-computed outputs
 
-The `outputs/` folder contains all CSVs and figures from a clean run. Markers can verify reproducibility either by:
+Each script's output subfolder contains all CSVs and figures from a clean run. Markers can verify reproducibility either by:
 
-1. **Direct comparison**: inspect `outputs/` and compare to the body
+1. **Direct comparison**: inspect each `*_outputs/` folder and compare to the body
 2. **Full reproduction**: download the dataset, run the scripts, compare to committed outputs
 
 ---
@@ -173,30 +171,23 @@ Python 3.10+. Key libraries: scikit-learn, numpy, pandas, matplotlib, scipy. Ful
 ```
 upstart-ai-lending-fragility/
 ├── README.md                     ← This file
+├── DATA_README.md                ← Dataset download instructions
 ├── requirements.txt              ← Python dependencies
-├── .gitignore                    ← Standard Python ignores
 ├── LICENSE                       ← MIT licence
 │
-├── code/                         ← Implementation
-│   ├── pilot_study.py            (Part I baseline pilot study)
-│   ├── solution_1.py             (Solution 1 adversarial validation)
-│   ├── solution_2.py             (Solution 2 PSI monitoring)
-│   ├── solution_3.py             (Solution 3 conformal prediction)
-│   ├── vintage_benchmark.py      (§3.3 robustness check)
-│   └── monte_carlo.py            (§5.5 NPV simulation)
+├── pilot_study.py                ← Part I baseline pilot study
+├── solution_1.py                 ← Solution 1 adversarial validation
+├── solution_2.py                 ← Solution 2 PSI monitoring
+├── solution_3.py                 ← Solution 3 conformal prediction
+├── vintage_benchmark.py          ← §3.3 robustness check
+├── monte_carlo.py                ← §5.5 NPV simulation
 │
-├── data/                         ← Dataset (downloaded separately)
-│   └── README.md                 (Download instructions)
-│
-└── outputs/                      ← Pre-computed results
-    ├── pilot_study_results.csv
-    ├── quarterly_results.csv
-    
-    ├── aci_summary_comparison.csv
-    ├── results_per_scenario.csv
-    ├── summary_comparison.csv
-    └── figures/
-        └── (15 PNGs)
+├── pilot_study_outputs/          ← Pre-computed pilot study results
+├── solution_1_outputs/           ← Pre-computed Solution 1 results
+├── solution_2_outputs/           ← Pre-computed Solution 2 results
+├── solution_3_outputs/           ← Pre-computed Solution 3 results
+├── vintage_benchmark_outputs/    ← Pre-computed robustness check
+└── monte_carlo_results.csv       ← Pre-computed NPV simulation
 ```
 
 ---
