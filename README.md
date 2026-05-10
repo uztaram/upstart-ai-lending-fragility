@@ -191,7 +191,7 @@ upstart-ai-lending-fragility/
 └── outputs/                      ← Pre-computed results
     ├── pilot_study_results.csv
     ├── quarterly_results.csv
-    ├── aci_quarterly_results.csv
+    
     ├── aci_summary_comparison.csv
     ├── results_per_scenario.csv
     ├── summary_comparison.csv
@@ -205,7 +205,7 @@ upstart-ai-lending-fragility/
 
 If you reference this code or its analytical outputs, please cite the parent dissertation:
 
-> [Author Name] (2026) _The Fragility of Alternative Credit: An Analysis of AI-Driven Lending Performance Under Macroeconomic Stress (2023-2026)_. MSIN0032 Management Science Dissertation, University College London.
+> Marat Daminov (2026) _The Fragility of Alternative Credit: An Analysis of AI-Driven Lending Performance Under Macroeconomic Stress (2023-2026)_. MSIN0032 Management Science Dissertation, University College London.
 
 ---
 
